@@ -1,0 +1,5 @@
+owner: calkit
+name: example-r
+title: R example
+description: An example Calkit project that uses R.
+git_repo_url: https://github.com/calkit/example-r
