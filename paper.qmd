@@ -1,0 +1,62 @@
+---
+title: "Research Paper Title"
+author: "Your Name"
+date: today
+abstract: |
+  A brief summary of your research. This should explain the research question,
+  main findings, and significance in a concise manner.
+---
+
+## Introduction
+
+Introduce your research topic and research questions here.
+
+```{r}
+#| label: setup
+#| include: false
+
+# Load necessary libraries and source scripts
+library(tidyverse)
+library(ggplot2)
+
+# Source your custom functions
+source("R/functions.R")
+source("R/load_data.R")
+source("R/analysis.R")
+source("R/figures.R")
+```
+
+## Methods
+
+Describe your data and analysis methods.
+
+```{r}
+#| label: load-data
+#| echo: false
+
+# Load and process data
+data_path <- load_raw_data()
+# data <- read_csv(data_path)
+```
+
+## Results
+
+Present your findings here with integrated code and visualizations.
+
+```{r}
+#| label: analysis
+#| echo: false
+
+# Run analysis
+# results <- run_analysis(data)
+```
+
+## Discussion
+
+Interpret your results in the context of existing literature.
+
+## Conclusion
+
+Summarize your main findings and implications.
+
+## References

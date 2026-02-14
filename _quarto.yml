@@ -1,0 +1,17 @@
+project:
+  type: document
+  output-dir: _output
+
+execute:
+  freeze: auto
+
+format:
+  pdf:
+    documentclass: article
+    geometry:
+      - margin=1in
+    fontsize: 11pt
+    linestretch: 1.5
+    bibliography: references.bib
+    csl: https://www.zotero.org/styles/nature
+    number-sections: true
