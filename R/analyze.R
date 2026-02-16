@@ -1,9 +1,30 @@
-# Main statistical analysis
+# Load raw data, process it, and perform analysis
 
 library(tidyverse)
 
-# Source the data loading script
-source("R/load_data.R")
+#' Load and preprocess raw data
+#'
+#' Reads raw data from the data/raw directory and performs initial cleaning
+load_raw_data <- function() {
+  # Read raw data from CSV
+  data <- read_csv("data/raw/data.csv")
+
+  # Perform cleaning and transformation
+  processed_data <- data %>%
+    filter(!is.na(value)) %>%
+    mutate(
+      group = as.factor(group),
+      measurement_date = as.Date(measurement_date)
+    )
+
+  # Save processed data
+  write_csv(processed_data, "data/processed/data.csv")
+
+  message("Data loaded and processed. Rows: ", nrow(processed_data))
+
+  # Return the processed data
+  processed_data
+}
 
 #' Run main analysis
 #'
@@ -43,6 +64,6 @@ run_analysis <- function(data) {
   results
 }
 
-# Execute the analysis
+# Execute the pipeline
 data <- load_raw_data()
 run_analysis(data)

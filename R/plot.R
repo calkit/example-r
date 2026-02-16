@@ -1,11 +1,11 @@
-# Create figures for publication
+# Create figures for publication using raw and processed data
 
 library(tidyverse)
 library(ggplot2)
 
-#' Create exploratory plot
+#' Create exploratory plots
 #'
-#' Generates a publication-quality figure
+#' Generates publication-quality figures from processed data
 create_plots <- function(data) {
   # Boxplot comparing groups
   p1 <- data %>%
@@ -42,3 +42,7 @@ create_plots <- function(data) {
 
   invisible(NULL)
 }
+
+# Load processed data and create plots
+data <- read_csv("data/processed/data.csv")
+create_plots(data)

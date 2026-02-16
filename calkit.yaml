@@ -11,12 +11,25 @@ environments:
 
 pipeline:
   stages:
-    analysis:
+    analyze:
       kind: r-script
-      script_path: R/analysis.R
+      script_path: R/analyze.R
       environment: main
       inputs:
-        - R/load_data.R
+        - data/raw/data.csv
       outputs:
         - path: output/analysis_results.rds
+          storage: git
+        - path: data/processed/data.csv
+          storage: git
+    plot:
+      kind: r-script
+      script_path: R/plot.R
+      environment: main
+      inputs:
+        - data/processed/data.csv
+      outputs:
+        - path: figures/boxplot.pdf
+          storage: git
+        - path: figures/timeseries.pdf
           storage: git

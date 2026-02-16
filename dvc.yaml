@@ -1,24 +1,31 @@
 stages:
-  quarto-render-paper-qmd:
-    cmd: calkit xenv -n quarto --no-check -- bash --noprofile --norc -c
-      "quarto render paper.qmd"
+  analyze:
+    cmd: calkit xenv -n main -- Rscript R/analyze.R
     deps:
-      - paper.qmd
-      - references.bib
-      - .calkit/envs/quarto/uv.lock
-    outs:
-      - paper.pdf
-    desc: Automatically generated from the 'quarto-render-paper-qmd' stage
-      in calkit.yaml. Changes made here will be overwritten.
-  analysis:
-    cmd: calkit xenv -n main -- Rscript R/analysis.R
-    deps:
-      - R/analysis.R
-      - R/load_data.R
+      - R/analyze.R
+      - data/raw/data.csv
       - renv.lock
     outs:
       - output/analysis_results.rds:
           cache: false
           persist: false
-    desc: Automatically generated from the 'analysis' stage in calkit.yaml.
+      - data/processed/data.csv:
+          cache: false
+          persist: false
+    desc: Automatically generated from the 'analyze' stage in calkit.yaml.
+      Changes made here will be overwritten.
+  plot:
+    cmd: calkit xenv -n main -- Rscript R/plot.R
+    deps:
+      - R/plot.R
+      - data/processed/data.csv
+      - renv.lock
+    outs:
+      - figures/boxplot.pdf:
+          cache: false
+          persist: false
+      - figures/timeseries.pdf:
+          cache: false
+          persist: false
+    desc: Automatically generated from the 'plot' stage in calkit.yaml.
       Changes made here will be overwritten.

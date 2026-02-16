@@ -41,3 +41,75 @@ stages:
       hash: md5
       md5: a775281aa6115a9174d70403e108a162
       size: 2152
+  figures:
+    cmd: calkit xenv -n main -- Rscript R/figures.R
+    deps:
+    - path: R/figures.R
+      hash: md5
+      md5: d9312f34d82310545853ce433c8ad916
+      size: 1271
+    - path: R/load_data.R
+      hash: md5
+      md5: 0ce606c5ccc1dce0fafc656634f3473f
+      size: 646
+    - path: renv.lock
+      hash: md5
+      md5: 9f4a50e718634ece3fb6ac6b22c22ec4
+      size: 238957
+    outs:
+    - path: figures/boxplot.pdf
+      hash: md5
+      md5: 13eb177445162a6b63b38845f16176f2
+      size: 6158
+    - path: figures/timeseries.pdf
+      hash: md5
+      md5: d4da40683abac4a2e8cda6f60740cac3
+      size: 5028
+  analyze:
+    cmd: calkit xenv -n main -- Rscript R/analyze.R
+    deps:
+    - path: R/analyze.R
+      hash: md5
+      md5: 42be457d2d29fffbdbcae73de6e7c706
+      size: 1588
+    - path: data/raw/data.csv
+      hash: md5
+      md5: c486af60dea31b08cda4f20258e9e99e
+      size: 581
+    - path: renv.lock
+      hash: md5
+      md5: 9f4a50e718634ece3fb6ac6b22c22ec4
+      size: 238957
+    outs:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 4258b6c5530837511afd5900a800e5bb
+      size: 557
+    - path: output/analysis_results.rds
+      hash: md5
+      md5: a775281aa6115a9174d70403e108a162
+      size: 2152
+  plot:
+    cmd: calkit xenv -n main -- Rscript R/plot.R
+    deps:
+    - path: R/plot.R
+      hash: md5
+      md5: 420723936731c20e5900622994a7c6ea
+      size: 1304
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 4258b6c5530837511afd5900a800e5bb
+      size: 557
+    - path: renv.lock
+      hash: md5
+      md5: 9f4a50e718634ece3fb6ac6b22c22ec4
+      size: 238957
+    outs:
+    - path: figures/boxplot.pdf
+      hash: md5
+      md5: 144b3e7c42b9b6538cde1484f2037dbd
+      size: 6160
+    - path: figures/timeseries.pdf
+      hash: md5
+      md5: a601a568f40bb9eeb42f230d188c6c7d
+      size: 5028
