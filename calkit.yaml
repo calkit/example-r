@@ -33,3 +33,15 @@ pipeline:
           storage: git
         - path: figures/timeseries.pdf
           storage: git
+
+figures:
+  - path: figures/boxplot.pdf
+    title: Boxplot
+    stage: plot
+  - path: figures/timeseries.pdf
+    title: Time series
+    stage: plot
+
+showcase:
+  - figure: figures/boxplot.pdf
+  - figure: figures/timeseries.pdf
