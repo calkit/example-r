@@ -1,49 +1,64 @@
 # R Example Research Project
 
-An example R project structure for producing a scientific paper with data analysis and figures.
+An example R project managed with Calkit that demonstrates reproducible data analysis and figure generation.
 
 ## Project Structure
 
 ```
 .
 ├── data/
-│   ├── raw/              # Original, untouched data
-│   ├── processed/        # Cleaned/transformed data
+│   ├── raw/              # Original, untouched data (input)
+│   ├── processed/        # Cleaned/transformed data (output from analyze stage)
 │   └── README.md         # Data dictionary
 ├── R/
-│   ├── functions.R       # Custom helper functions
-│   ├── load_data.R       # Load and preprocess data
-│   ├── analysis.R        # Statistical analysis
-│   └── figures.R         # Create publication figures
+│   ├── analyze.R         # Data processing and statistical analysis
+│   └── plot.R            # Create publication figures
 ├── figures/              # Generated plots and visualizations
-├── output/               # Tables and summary statistics
-├── paper.qmd             # Main manuscript (Quarto document)
+├── output/               # Analysis results and summaries
+├── calkit.yaml           # Calkit pipeline configuration
+├── DESCRIPTION           # Project metadata and R dependencies
+├── renv/                 # R environment configuration and packages
 ├── references.bib        # Citation database
-├── _quarto.yml           # Quarto configuration
-├── DESCRIPTION           # Project metadata and dependencies
-├── renv.lock             # Reproducible R environment
-└── .Rprofile             # Project startup settings
+└── README.md             # This file
 ```
 
 ## Workflow
 
-1. **Load data**: Run scripts in `R/load_data.R` to read and preprocess raw data
-2. **Analyze**: Use `R/analysis.R` for statistical tests and models
-3. **Visualize**: Create figures with `R/figures.R`
-4. **Write**: Embed code and results in `paper.qmd`
-5. **Render**: Quarto processes the document to produce PDF/HTML
+The entire project is reproduced with a single command:
+
+```bash
+calkit run
+```
+
+This executes the pipeline defined in `calkit.yaml`:
+
+1. **Analyze stage** (`R/analyze.R`):
+   - Reads raw data from `data/raw/data.csv`
+   - Performs statistical analysis
+   - Outputs processed data to `data/processed/data.csv`
+   - Saves analysis results to `output/analysis_results.rds`
+
+2. **Plot stage** (`R/plot.R`):
+   - Uses processed data from `data/processed/data.csv`
+   - Generates publication-ready figures
+   - Outputs plots to `figures/`
 
 ## Key Features
 
-- **DESCRIPTION file**: Declares project dependencies and metadata
-- **renv.lock**: Freezes package versions for reproducibility
-- **R/ directory**: Organizes analysis scripts as functions
-- **Quarto integration**: Combines R code, results, and narrative in one document
-- **Modular structure**: Reusable functions and clear separation of concerns
+- **Calkit pipeline**: Declarative workflow defined in `calkit.yaml` ensures reproducible execution
+- **DESCRIPTION file**: Declares R package dependencies
+- **renv**: Locks package versions for complete reproducibility
+- **Modular R scripts**: Each analysis step is a separate, focused R script
+- **Dependency tracking**: Pipeline automatically runs stages in correct order with proper inputs/outputs
 
 ## Getting Started
 
-1. Install dependencies: `renv::restore()`
-2. Edit data files and modify R scripts as needed
-3. Update `paper.qmd` with your analysis and writing
-4. Render the paper: `quarto render paper.qmd`
+1. Run the entire pipeline: `calkit run`
+2. Modify R scripts in `R/` as needed for your analysis
+3. Run again: `calkit run` (only affected stages will re-execute)
+
+## Requirements
+
+- R (>= 4.0)
+- Calkit CLI
+- Dependencies listed in DESCRIPTION (managed by renv)
