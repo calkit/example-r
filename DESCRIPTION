@@ -11,7 +11,7 @@ Imports:
     tidyverse (>= 1.3.0),
     ggplot2 (>= 3.3.0),
     dplyr (>= 1.0.0),
-    readr (>= 2.0.0)
-Suggests:
+    readr (>= 2.0.0),
+    here (>= 1.0.0),
     knitr,
     rmarkdown

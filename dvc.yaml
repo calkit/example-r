@@ -1,0 +1,12 @@
+stages:
+  quarto-render-paper-qmd:
+    cmd: calkit xenv -n quarto --no-check -- bash --noprofile --norc -c
+      "quarto render paper.qmd"
+    deps:
+      - paper.qmd
+      - references.bib
+      - .calkit/envs/quarto/uv.lock
+    outs:
+      - paper.pdf
+    desc: Automatically generated from the 'quarto-render-paper-qmd' stage
+      in calkit.yaml. Changes made here will be overwritten.

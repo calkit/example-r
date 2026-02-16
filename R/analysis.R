@@ -6,16 +6,36 @@ library(tidyverse)
 #'
 #' Performs statistical tests and modeling on processed data
 run_analysis <- function(data) {
-  # Example analyses
-  # t_test_result <- t.test(data$value ~ data$group)
-  # lm_result <- lm(outcome ~ predictor, data = data)
+  # T-test comparing groups
+  t_test_result <- t.test(value ~ group, data = data)
+
+  # Linear regression model
+  lm_result <- lm(value ~ group, data = data)
+
+  # Summary statistics by group
+  summary_stats <- data %>%
+    group_by(group) %>%
+    summarise(
+      n = n(),
+      mean = mean(value),
+      sd = sd(value),
+      min = min(value),
+      max = max(value),
+      .groups = "drop"
+    )
 
   # Save results to output/
-  # saveRDS(results, "output/analysis_results.rds")
-
-  message("Analysis template - add your statistical tests and models here")
-
-  list(
-    summary = "Analysis placeholder"
+  results <- list(
+    t_test = t_test_result,
+    lm = lm_result,
+    summary = summary_stats
   )
+
+  saveRDS(results, "output/analysis_results.rds")
+
+  message("\nT-test p-value: ", round(t_test_result$p.value, 4))
+  message("\nSummary statistics by group:")
+  print(summary_stats)
+
+  results
 }

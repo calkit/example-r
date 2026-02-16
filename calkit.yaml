@@ -8,3 +8,22 @@ environments:
   main:
     kind: renv
     path: DESCRIPTION
+  quarto:
+    kind: uv
+    path: .calkit/envs/quarto/pyproject.toml
+    env_vars:
+      R_LIBS_USER: "renv/library"
+      R_PROFILE_USER: ""
+      R_ENVIRON_USER: ""
+    # TODO: tinytex was installed with quarto install
+pipeline:
+  stages:
+    quarto-render-paper-qmd:
+      kind: shell-command
+      command: quarto render paper.qmd
+      environment: quarto
+      inputs:
+        - paper.qmd
+        - references.bib
+      outputs:
+        - paper.pdf

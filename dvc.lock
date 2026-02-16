@@ -1,0 +1,23 @@
+schema: '2.0'
+stages:
+  quarto-render-paper-qmd:
+    cmd: calkit xenv -n quarto --no-check -- bash --noprofile --norc -c "quarto render
+      paper.qmd"
+    deps:
+    - path: .calkit/envs/quarto/uv.lock
+      hash: md5
+      md5: f86693ad34464d4acf7099a9becdc104
+      size: 193683
+    - path: paper.qmd
+      hash: md5
+      md5: 29e1e7d12a35b80f395e72b1da6c7f25
+      size: 4306
+    - path: references.bib
+      hash: md5
+      md5: a794babcf047219396126388412499bf
+      size: 362
+    outs:
+    - path: paper.pdf
+      hash: md5
+      md5: 1c3ebd13c9d015046c8b0003dde04e97
+      size: 35323

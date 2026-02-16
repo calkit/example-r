@@ -7,19 +7,38 @@ library(ggplot2)
 #'
 #' Generates a publication-quality figure
 create_plots <- function(data) {
-  # Example plot
-  # p <- data %>%
-  #   ggplot(aes(x = x_var, y = y_var, fill = group)) +
-  #   geom_boxplot() +
-  #   theme_minimal() +
-  #   labs(title = "Descriptive Title",
-  #        x = "X-axis label",
-  #        y = "Y-axis label",
-  #        fill = "Group")
-  #
-  # ggsave("figures/exploratory_plot.pdf", p, width = 8, height = 6)
+  # Boxplot comparing groups
+  p1 <- data %>%
+    ggplot(aes(x = group, y = value, fill = group)) +
+    geom_boxplot(alpha = 0.7) +
+    geom_jitter(width = 0.2, alpha = 0.5) +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    labs(
+      title = "Value Comparison Between Groups",
+      x = "Group",
+      y = "Measured Value"
+    )
 
-  message("Figure template - add your ggplot2 code here")
+  # Time series plot
+  p2 <- data %>%
+    group_by(measurement_date, group) %>%
+    summarise(mean_value = mean(value), .groups = "drop") %>%
+    ggplot(aes(x = measurement_date, y = mean_value, color = group)) +
+    geom_line(linewidth = 1) +
+    geom_point(size = 2) +
+    theme_minimal() +
+    labs(
+      title = "Mean Values Over Time",
+      x = "Date",
+      y = "Mean Value",
+      color = "Group"
+    )
+
+  ggsave("figures/boxplot.pdf", p1, width = 6, height = 4)
+  ggsave("figures/timeseries.pdf", p2, width = 7, height = 4)
+
+  message("Figures saved: figures/boxplot.pdf, figures/timeseries.pdf")
 
   invisible(NULL)
 }

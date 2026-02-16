@@ -6,19 +6,22 @@ library(tidyverse)
 #'
 #' Reads raw data from the data/raw directory and performs initial cleaning
 load_raw_data <- function() {
-  # Example: read CSV files from data/raw/
-  # data <- read_csv("data/raw/mydata.csv")
+  # Read raw data from CSV
+  data <- read_csv("data/raw/data.csv")
 
-  # Perform any necessary cleaning/transformation
-  # processed_data <- data %>%
-  #   filter(!is.na(value)) %>%
-  #   mutate(group = as.factor(group))
+  # Perform cleaning and transformation
+  processed_data <- data %>%
+    filter(!is.na(value)) %>%
+    mutate(
+      group = as.factor(group),
+      measurement_date = as.Date(measurement_date)
+    )
 
   # Save processed data
-  # write_csv(processed_data, "data/processed/processed_data.csv")
+  write_csv(processed_data, "data/processed/data.csv")
 
-  message("Data loading template - modify with your actual data")
+  message("Data loaded and processed. Rows: ", nrow(processed_data))
 
-  # Return path for later use
-  "data/processed/processed_data.csv"
+  # Return the processed data
+  processed_data
 }
