@@ -210,3 +210,4 @@ __marimo__/
 **/*.quarto_ipynb
 /paper.pdf
 .Rproj.user
+.Rhistory
