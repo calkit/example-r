@@ -11,10 +11,6 @@ environments:
   quarto:
     kind: uv
     path: .calkit/envs/quarto/pyproject.toml
-    env_vars:
-      R_LIBS_USER: "renv/library"
-      R_PROFILE_USER: ""
-      R_ENVIRON_USER: ""
     # TODO: tinytex was installed with quarto install
 
 pipeline:
@@ -41,7 +37,7 @@ pipeline:
           storage: git
         - path: figures/timeseries.pdf
           storage: git
-    quarto-render-paper-qmd:
+    render-paper:
       kind: shell-command
       command: quarto render paper.qmd
       environment: quarto
@@ -65,7 +61,7 @@ figures:
 publications:
   - path: paper.pdf
     title: Example Paper
-    stage: quarto-render-paper-qmd
+    stage: render-paper
 
 showcase:
   - publication: paper.pdf
