@@ -78,8 +78,8 @@ stages:
       size: 581
     - path: renv.lock
       hash: md5
-      md5: 9f4a50e718634ece3fb6ac6b22c22ec4
-      size: 238957
+      md5: 6b069cd257c6cebf153b8e20a1967df6
+      size: 238157
     outs:
     - path: data/processed/data.csv
       hash: md5
@@ -102,14 +102,14 @@ stages:
       size: 557
     - path: renv.lock
       hash: md5
-      md5: 9f4a50e718634ece3fb6ac6b22c22ec4
-      size: 238957
+      md5: 339a05a338975b53e4c2c2895d1f1d02
+      size: 242144
     outs:
     - path: figures/boxplot.pdf
       hash: md5
-      md5: 985bb5fd09afca9151ba8f5738af2939
-      size: 6171
+      md5: 5c1a8f37291167d8923ccc6e1adc0b32
+      size: 6160
     - path: figures/timeseries.pdf
       hash: md5
-      md5: 4e21c9d1f01b9b41916fadf0a288c8f1
+      md5: 0f8723b93781588c95b88fd2aa8c2e13
       size: 5028

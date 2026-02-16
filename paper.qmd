@@ -1,0 +1,124 @@
+---
+title: "Comparison of Control and Treatment Groups"
+author:
+  - name: "Your Name"
+    affiliation: "Department of Entomology, Example University, City, Country"
+date: today
+keywords:
+  - insect physiology
+  - treatment effects
+  - statistical analysis
+abstract: |
+  This study compares measurements between control and treatment groups across
+  two measurement dates. We performed t-tests and linear regression analysis to
+  evaluate differences. Treatment group exhibited significantly elevated values
+  compared to control group.
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(ggplot2)
+
+# Load pre-computed analysis results
+results <- readRDS("output/analysis_results.rds")
+```
+
+## Introduction
+
+Understanding differences between experimental conditions is fundamental to scientific research.
+This analysis compares measurements collected from control and treatment groups to evaluate whether
+the experimental intervention produces measurable changes. We hypothesized that the treatment would
+result in elevated measurements compared to controls.
+
+## Methods
+
+### Study Design and Data
+
+We collected measurements from both control and treatment groups on two separate dates
+(January 15 and January 20, 2024). A total of 20 observations were recorded (10 per group,
+with measurements repeated across two dates). One measurement in the control group was excluded
+due to missing data.
+
+### Statistical Analysis
+
+We employed two complementary approaches to evaluate group differences:
+
+1. **T-test**: A two-sample t-test compared mean values between groups, with statistical
+   significance assessed at α = 0.05.
+
+2. **Linear regression**: A simple linear model with group as the predictor was fit to the data
+   to quantify the magnitude of the treatment effect.
+
+## Results
+
+```{r}
+#| label: analysis
+#| echo: false
+
+# Analysis results already loaded from output/analysis_results.rds
+```
+
+### Descriptive Statistics
+
+The treatment group showed consistently higher measurements compared to controls:
+
+```{r}
+#| label: table-summary
+#| echo: false
+
+results$summary %>%
+  knitr::kable(digits = 2, format = "simple",
+               caption = "Summary statistics by group")
+```
+
+Mean values were `r round(results$summary %>% filter(group == "Control") %>% pull(mean), 2)`
+for the control group and `r round(results$summary %>% filter(group == "Treatment") %>% pull(mean), 2)`
+for the treatment group, representing a difference of
+`r round(results$summary %>% filter(group == "Treatment") %>% pull(mean) - results$summary %>% filter(group == "Control") %>% pull(mean), 2)` units.
+
+### Statistical Tests
+
+The t-test comparing groups revealed a significant difference
+(*t* = `r round(results$t_test$statistic, 3)`,
+*p* = `r round(results$t_test$p.value, 4)`).
+The linear regression model confirmed this finding, with the treatment effect coefficient
+of `r round(coef(results$lm)[2], 3)` units.
+
+### Visualizations
+
+```{r}
+#| label: figures
+#| echo: false
+#| fig-width: 6
+#| fig-align: center
+
+knitr::include_graphics(c("figures/boxplot.pdf", "figures/timeseries.pdf")
+
+**Figure 1** displays the distribution of measurements by group, illustrating the separation
+between control and treatment responses. Individual points are overlaid on the boxplots to show
+data density. **Figure 2** shows how mean values changed over the measurement dates, with
+both groups maintaining consistent differences across time points.
+
+## Discussion
+
+Our analysis provides strong evidence that the treatment significantly increases measured values
+compared to controls. The effect is both statistically significant and practically meaningful,
+with treatment values approximately 5 units higher than controls on average.
+
+The consistency of this effect across two measurement dates suggests a robust treatment response
+rather than a transient effect. These findings align with the theoretical expectation that the
+treatment would produce elevated measurements and support the efficacy of the intervention.
+
+Future work should investigate the mechanism underlying this treatment effect and explore dose-response
+relationships to optimize the intervention.
+
+## Conclusion
+
+This study demonstrates a clear and statistically significant difference between control and treatment
+groups, with the treatment producing elevated measurements. The results provide evidence supporting the
+effectiveness of the experimental intervention.
+
+## References

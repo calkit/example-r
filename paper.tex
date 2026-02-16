@@ -1,0 +1,287 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  review]{cas-sc}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\let\NewNegationCommand\relax
+\usepackage{amssymb}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Comparison of Control and Treatment Groups},
+  pdfauthor={Your Name},
+  pdfkeywords={insect physiology, treatment effects, statistical
+analysis},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Comparison of Control and Treatment Groups}
+\author{Your Name}
+\date{2026-02-16}
+\begin{document}
+\maketitle
+\begin{abstract}
+This study compares measurements between control and treatment groups
+across two measurement dates. We performed t-tests and linear regression
+analysis to evaluate differences. Treatment group exhibited
+significantly elevated values compared to control group.
+\end{abstract}
+
+
+\section{Introduction}\label{introduction}
+
+Understanding differences between experimental conditions is fundamental
+to scientific research. This analysis compares measurements collected
+from control and treatment groups to evaluate whether the experimental
+intervention produces measurable changes. We hypothesized that the
+treatment would result in elevated measurements compared to controls.
+
+\section{Methods}\label{methods}
+
+\subsection{Study Design and Data}\label{study-design-and-data}
+
+We collected measurements from both control and treatment groups on two
+separate dates (January 15 and January 20, 2024). A total of 20
+observations were recorded (10 per group, with measurements repeated
+across two dates). One measurement in the control group was excluded due
+to missing data.
+
+\subsection{Statistical Analysis}\label{statistical-analysis}
+
+We employed two complementary approaches to evaluate group differences:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{T-test}: A two-sample t-test compared mean values between
+  groups, with statistical significance assessed at α = 0.05.
+\item
+  \textbf{Linear regression}: A simple linear model with group as the
+  predictor was fit to the data to quantify the magnitude of the
+  treatment effect.
+\end{enumerate}
+
+\section{Results}\label{results}
+
+\subsection{Descriptive Statistics}\label{descriptive-statistics}
+
+The treatment group showed consistently higher measurements compared to
+controls:
+
+\begin{longtable}[]{@{}lrrrrr@{}}
+\caption{Summary statistics by group}\tabularnewline
+\toprule\noalign{}
+group & n & mean & sd & min & max \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+group & n & mean & sd & min & max \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Control & 9 & 24.22 & 0.78 & 23.1 & 25.3 \\
+Treatment & 10 & 29.03 & 0.77 & 27.9 & 30.2 \\
+\end{longtable}
+
+Mean values were 24.22 for the control group and 29.03 for the treatment
+group, representing a difference of 4.81 units.
+
+\subsection{Statistical Tests}\label{statistical-tests}
+
+The t-test comparing groups revealed a significant difference (\emph{t}
+= -13.556, \emph{p} = 0). The linear regression model confirmed this
+finding, with the treatment effect coefficient of 4.808 units.
+
+\subsection{Visualizations}\label{visualizations}
+
+\#\textbar{} label: figures \#\textbar{} echo: false \#\textbar{}
+fig-width: 6 \#\textbar{} fig-align: center
+
+knitr::include\_graphics(c(``figures/boxplot.pdf'',
+``figures/timeseries.pdf'')
+
+\textbf{Figure 1} displays the distribution of measurements by group,
+illustrating the separation between control and treatment responses.
+Individual points are overlaid on the boxplots to show data density.
+\textbf{Figure 2} shows how mean values changed over the measurement
+dates, with both groups maintaining consistent differences across time
+points.
+
+\section{Discussion}\label{discussion}
+
+Our analysis provides strong evidence that the treatment significantly
+increases measured values compared to controls. The effect is both
+statistically significant and practically meaningful, with treatment
+values approximately 5 units higher than controls on average.
+
+The consistency of this effect across two measurement dates suggests a
+robust treatment response rather than a transient effect. These findings
+align with the theoretical expectation that the treatment would produce
+elevated measurements and support the efficacy of the intervention.
+
+Future work should investigate the mechanism underlying this treatment
+effect and explore dose-response relationships to optimize the
+intervention.
+
+\section{Conclusion}\label{conclusion}
+
+This study demonstrates a clear and statistically significant difference
+between control and treatment groups, with the treatment producing
+elevated measurements. The results provide evidence supporting the
+effectiveness of the experimental intervention.
+
+\section{References}\label{references}
+
+
+
+
+\end{document}

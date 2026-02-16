@@ -29,3 +29,17 @@ stages:
           persist: false
     desc: Automatically generated from the 'plot' stage in calkit.yaml.
       Changes made here will be overwritten.
+  quarto-render-paper-qmd:
+    cmd: calkit xenv -n quarto --no-check -- bash --noprofile --norc -c
+      "quarto render paper.qmd"
+    deps:
+      - paper.qmd
+      - references.bib
+      - figures/boxplot.pdf
+      - figures/timeseries.pdf
+      - output/analysis_results.rds
+      - .calkit/envs/quarto/uv.lock
+    outs:
+      - paper.pdf
+    desc: Automatically generated from the 'quarto-render-paper-qmd' stage
+      in calkit.yaml. Changes made here will be overwritten.
