@@ -1,7 +1,4 @@
 ^renv$
 ^renv\.lock$
-<<<<<<< HEAD
 ^.*\.Rproj$
 ^\.Rproj\.user$
-=======
->>>>>>> 66100be (Add quarto)

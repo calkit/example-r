@@ -2,18 +2,10 @@ execute:
   freeze: auto
   cache: false
 
-resource-path:
-  - tex/elsevier/els-cas-templates
-
 format:
   pdf:
-    documentclass: cas-sc
-    classoption:
-      - review
+    documentclass: article
     bibliography: references.bib
-    biblio-style: cas-model2-names
     number-sections: true
     keep-tex: true
-    header-includes: |
-      \let\NewNegationCommand\relax
-      \usepackage{amssymb}
+    pdf-engine: lualatex

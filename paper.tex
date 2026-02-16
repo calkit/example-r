@@ -5,7 +5,7 @@
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
-  review]{cas-sc}
+]{article}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{5}
@@ -104,8 +104,6 @@
  
 
 
-\let\NewNegationCommand\relax
-\usepackage{amssymb}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -243,11 +241,9 @@ finding, with the treatment effect coefficient of 4.808 units.
 
 \subsection{Visualizations}\label{visualizations}
 
-\#\textbar{} label: figures \#\textbar{} echo: false \#\textbar{}
-fig-width: 6 \#\textbar{} fig-align: center
+\pandocbounded{\includegraphics[keepaspectratio]{figures/boxplot.pdf}}
 
-knitr::include\_graphics(c(``figures/boxplot.pdf'',
-``figures/timeseries.pdf'')
+\pandocbounded{\includegraphics[keepaspectratio]{figures/timeseries.pdf}}
 
 \textbf{Figure 1} displays the distribution of measurements by group,
 illustrating the separation between control and treatment responses.

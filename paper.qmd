@@ -92,10 +92,9 @@ of `r round(coef(results$lm)[2], 3)` units.
 ```{r}
 #| label: figures
 #| echo: false
-#| fig-width: 6
-#| fig-align: center
 
-knitr::include_graphics(c("figures/boxplot.pdf", "figures/timeseries.pdf")
+knitr::include_graphics(c("figures/boxplot.pdf", "figures/timeseries.pdf"))
+```
 
 **Figure 1** displays the distribution of measurements by group, illustrating the separation
 between control and treatment responses. Individual points are overlaid on the boxplots to show
