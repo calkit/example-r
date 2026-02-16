@@ -29,7 +29,7 @@ stages:
           persist: false
     desc: Automatically generated from the 'plot' stage in calkit.yaml.
       Changes made here will be overwritten.
-  quarto-render-paper-qmd:
+  render-paper:
     cmd: calkit xenv -n quarto --no-check -- bash --noprofile --norc -c
       "quarto render paper.qmd"
     deps:
@@ -41,5 +41,5 @@ stages:
       - .calkit/envs/quarto/uv.lock
     outs:
       - paper.pdf
-    desc: Automatically generated from the 'quarto-render-paper-qmd' stage
-      in calkit.yaml. Changes made here will be overwritten.
+    desc: Automatically generated from the 'render-paper' stage in calkit.yaml.
+      Changes made here will be overwritten.
