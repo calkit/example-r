@@ -1,7 +1,6 @@
-# Project-specific R settings
-
-# Set working directory to project root
-setwd(here::here())
-
-# Message on start
-cat("Project-specific settings loaded.\n")
+# Activate renv for this project
+if (file.exists("renv/activate.R")) {
+  source("renv/activate.R")
+} else {
+  cat("Note: renv/activate.R not found. Run renv::restore() to initialize the project environment.\n")
+}

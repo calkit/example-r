@@ -1,0 +1,31 @@
+stages:
+  analyze:
+    cmd: calkit xenv -n main -- Rscript R/analyze.R
+    deps:
+      - R/analyze.R
+      - data/raw/data.csv
+      - renv.lock
+    outs:
+      - output/analysis_results.rds:
+          cache: false
+          persist: false
+      - data/processed/data.csv:
+          cache: false
+          persist: false
+    desc: Automatically generated from the 'analyze' stage in calkit.yaml.
+      Changes made here will be overwritten.
+  plot:
+    cmd: calkit xenv -n main -- Rscript R/plot.R
+    deps:
+      - R/plot.R
+      - data/processed/data.csv
+      - renv.lock
+    outs:
+      - figures/boxplot.pdf:
+          cache: false
+          persist: false
+      - figures/timeseries.pdf:
+          cache: false
+          persist: false
+    desc: Automatically generated from the 'plot' stage in calkit.yaml.
+      Changes made here will be overwritten.
