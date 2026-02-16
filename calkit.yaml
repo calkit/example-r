@@ -8,6 +8,10 @@ environments:
   main:
     kind: renv
     path: DESCRIPTION
+  quarto:
+    kind: uv
+    path: .calkit/envs/quarto/pyproject.toml
+    # TODO: tinytex was installed with quarto install
 
 pipeline:
   stages:
@@ -33,6 +37,18 @@ pipeline:
           storage: git
         - path: figures/timeseries.pdf
           storage: git
+    render-paper:
+      kind: shell-command
+      command: quarto render paper.qmd
+      environment: quarto
+      inputs:
+        - paper.qmd
+        - references.bib
+        - figures/boxplot.pdf
+        - figures/timeseries.pdf
+        - output/analysis_results.rds
+      outputs:
+        - paper.pdf
 
 figures:
   - path: figures/boxplot.pdf
@@ -42,6 +58,10 @@ figures:
     title: Time series
     stage: plot
 
+publications:
+  - path: paper.pdf
+    title: Example Paper
+    stage: render-paper
+
 showcase:
-  - figure: figures/boxplot.pdf
-  - figure: figures/timeseries.pdf
+  - publication: paper.pdf

@@ -1,0 +1,11 @@
+execute:
+  freeze: auto
+  cache: false
+
+format:
+  pdf:
+    documentclass: article
+    bibliography: references.bib
+    number-sections: true
+    keep-tex: true
+    pdf-engine: lualatex
