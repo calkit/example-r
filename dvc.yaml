@@ -10,3 +10,15 @@ stages:
       - paper.pdf
     desc: Automatically generated from the 'quarto-render-paper-qmd' stage
       in calkit.yaml. Changes made here will be overwritten.
+  analysis:
+    cmd: calkit xenv -n main -- Rscript R/analysis.R
+    deps:
+      - R/analysis.R
+      - R/load_data.R
+      - renv.lock
+    outs:
+      - output/analysis_results.rds:
+          cache: false
+          persist: false
+    desc: Automatically generated from the 'analysis' stage in calkit.yaml.
+      Changes made here will be overwritten.

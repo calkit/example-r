@@ -2,6 +2,9 @@
 
 library(tidyverse)
 
+# Source the data loading script
+source("R/load_data.R")
+
 #' Run main analysis
 #'
 #' Performs statistical tests and modeling on processed data
@@ -39,3 +42,7 @@ run_analysis <- function(data) {
 
   results
 }
+
+# Execute the analysis
+data <- load_raw_data()
+run_analysis(data)
