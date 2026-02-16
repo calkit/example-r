@@ -107,9 +107,9 @@ stages:
     outs:
     - path: figures/boxplot.pdf
       hash: md5
-      md5: 144b3e7c42b9b6538cde1484f2037dbd
-      size: 6160
+      md5: 985bb5fd09afca9151ba8f5738af2939
+      size: 6171
     - path: figures/timeseries.pdf
       hash: md5
-      md5: a601a568f40bb9eeb42f230d188c6c7d
+      md5: 4e21c9d1f01b9b41916fadf0a288c8f1
       size: 5028
