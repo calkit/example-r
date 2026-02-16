@@ -62,6 +62,10 @@ figures:
     title: Time series
     stage: plot
 
+publications:
+  - path: paper.pdf
+    title: Example Paper
+    stage: quarto-render-paper-qmd
+
 showcase:
-  - figure: figures/boxplot.pdf
-  - figure: figures/timeseries.pdf
+  - publication: paper.pdf
